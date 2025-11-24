@@ -1,0 +1,23 @@
+---
+import { SITE_TITLE } from "../consts";
+import HeaderLink from "./HeaderLink.astro";
+import LogoVoltiak from "../assets/.png/voltiak-logo-.png";
+import LogoVoltiakSlogan from "../assets/.png/voltiak-logo-slogan-blanco.png";
+import { Image } from "astro:assets";
+---
+
+<HeaderLink href="/" class="flex flex-col items-center">
+    <!-- Logo voltiak -->
+    <div class="flex items-center gap-[-1px]">
+        <!-- <Image src={LogoVoltiak} alt="Logo Voltiak" width={100} height={100} /> -->
+        <span
+            class="text-[48px] text-[#05192d] font-family-HelveticaNeue mt-[-2px]"
+            >Voltiak</span
+        >
+
+    </div>
+    <!-- Tagline -->
+    <span class="text-[11px] text-[#05192d] font-family-HelveticaNeue  mt-[-8px] md:mt-[-12px] text-center"
+        >Innovación en movimiento</span
+    >
+</HeaderLink>

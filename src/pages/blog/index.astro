@@ -1,0 +1,200 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead
+			title="Noticias - Voltiak"
+			description="Noticias y artículos sobre ventilación industrial y calidad del aire"
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="min-h-screen bg-white pt-24 md:pt-40 pb-16">
+			<div class="max-w-7xl mx-auto px-4 md:px-8">
+				<!-- Título -->
+				<h1
+					class="text-4xl md:text-6xl font-bold text-[#05192d] mb-8 md:mb-12 text-center font-family-HelveticaNeue"
+				>
+					Noticias
+				</h1>
+
+				<!-- Filtros de categorías -->
+				<div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-12">
+					<button
+						data-filter="todos"
+						class="filter-btn px-6 py-2 md:px-8 md:py-3 rounded-full text-sm md:text-base font-medium font-family-HelveticaNeue whitespace-nowrap transition-all bg-[#05192d] text-white"
+					>
+						Todos
+					</button>
+					<button
+						data-filter="elegir-mi-equipo"
+						class="filter-btn px-6 py-2 md:px-8 md:py-3 rounded-full text-sm md:text-base font-medium font-family-HelveticaNeue whitespace-nowrap transition-all bg-gray-200 text-[#05192d] hover:bg-gray-300"
+					>
+						Elegir mi equipo
+					</button>
+					<button
+						data-filter="cuidados"
+						class="filter-btn px-6 py-2 md:px-8 md:py-3 rounded-full text-sm md:text-base font-medium font-family-HelveticaNeue whitespace-nowrap transition-all bg-gray-200 text-[#05192d] hover:bg-gray-300"
+					>
+						Cuidados
+					</button>
+					<button
+						data-filter="ambientes"
+						class="filter-btn px-6 py-2 md:px-8 md:py-3 rounded-full text-sm md:text-base font-medium font-family-HelveticaNeue whitespace-nowrap transition-all bg-gray-200 text-[#05192d] hover:bg-gray-300"
+					>
+						Ambientes
+					</button>
+					<button
+						data-filter="salud-y-cuidados"
+						class="filter-btn px-6 py-2 md:px-8 md:py-3 rounded-full text-sm md:text-base font-medium font-family-HelveticaNeue whitespace-nowrap transition-all bg-gray-200 text-[#05192d] hover:bg-gray-300"
+					>
+						Salud y cuidados
+					</button>
+					<button
+						data-filter="compromiso-ambiental"
+						class="filter-btn px-6 py-2 md:px-8 md:py-3 rounded-full text-sm md:text-base font-medium font-family-HelveticaNeue whitespace-nowrap transition-all bg-gray-200 text-[#05192d] hover:bg-gray-300"
+					>
+						Compromiso ambiental
+					</button>
+				</div>
+
+				<!-- Lista de artículos -->
+				<div id="articles-grid" class="space-y-6 md:space-y-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+					{posts.map((post, index) => {
+						// Cada 2 artículos cambia la posición: 0-1 derecha, 2-3 izquierda, 4-5 derecha, etc.
+						const groupIndex = Math.floor(index / 2);
+						const imagePosition = groupIndex % 2 === 0 ? 'right' : 'left';
+						const hasBlueBackground = post.data.hasBlueBackground ?? false;
+						const category = post.data.category ?? 'todos';
+						return (
+							<article
+								class={`article-card rounded-lg overflow-hidden ${
+									hasBlueBackground
+										? 'bg-[#05192d] text-white'
+										: 'bg-white border border-gray-200'
+								} hover:shadow-lg transition-shadow`}
+								data-category={category}
+							>
+								<a href={`/blog/${post.id}`} class="block">
+									<div
+										class={`flex ${
+											imagePosition === 'right'
+												? 'flex-row-reverse'
+												: 'flex-row'
+										}`}
+									>
+										<!-- Imagen -->
+										<div class="shrink-0 w-1/2 md:w-1/2">
+											<div class="h-full min-h-[200px] md:min-h-0 md:h-full bg-gray-100 overflow-hidden">
+												{post.data.heroImage && (
+													<Image
+														src={post.data.heroImage}
+														alt={post.data.title}
+														class="w-full h-full object-cover"
+													/>
+												)}
+											</div>
+										</div>
+
+										<!-- Contenido -->
+										<div class="flex-1 p-6 md:p-8 flex flex-col justify-center">
+											<h2
+												class={`text-xl md:text-2xl font-bold mb-3 font-family-HelveticaNeue ${
+													hasBlueBackground
+														? 'text-white'
+														: 'text-[#05192d]'
+												}`}
+											>
+												{post.data.title}
+											</h2>
+											<p
+												class={`text-sm md:text-base mb-4 leading-relaxed font-family-HelveticaNeue ${
+													hasBlueBackground
+														? 'text-white/90'
+														: 'text-gray-600'
+												}`}
+											>
+												{post.data.description}
+											</p>
+											<span
+												class={`inline-block text-sm font-medium underline font-family-HelveticaNeue ${
+													hasBlueBackground
+														? 'text-white'
+														: 'text-[#05192d]'
+												} hover:opacity-80 transition-opacity`}
+											>
+												Leer Artículo
+											</span>
+										</div>
+									</div>
+								</a>
+							</article>
+						);
+					})}
+				</div>
+
+			</div>
+		</main>
+		<Footer />
+
+		<script>
+			// Funcionalidad de filtros
+			(function () {
+				const filterButtons = document.querySelectorAll('.filter-btn');
+				const articleCards = document.querySelectorAll('.article-card');
+				let currentFilter = 'todos';
+
+				function updateFilter(selectedFilter: string) {
+					currentFilter = selectedFilter;
+
+					// Actualizar estilos de botones
+					filterButtons.forEach((btn) => {
+						const filter = btn.getAttribute('data-filter');
+						if (filter === selectedFilter) {
+							btn.classList.remove('bg-gray-200', 'text-[#05192d]');
+							btn.classList.add('bg-[#05192d]', 'text-white');
+						} else {
+							btn.classList.remove('bg-[#05192d]', 'text-white');
+							btn.classList.add('bg-gray-200', 'text-[#05192d]');
+						}
+					});
+
+					// Mostrar/ocultar artículos
+					articleCards.forEach((card) => {
+						const category = card.getAttribute('data-category');
+						const htmlCard = card as HTMLElement;
+						if (selectedFilter === 'todos' || category === selectedFilter) {
+							htmlCard.style.display = 'block';
+						} else {
+							htmlCard.style.display = 'none';
+						}
+					});
+				}
+
+				// Event listeners para los botones de filtro
+				filterButtons.forEach((btn) => {
+					btn.addEventListener('click', () => {
+						const filter = btn.getAttribute('data-filter');
+						if (filter) {
+							updateFilter(filter);
+						}
+					});
+				});
+
+				// Inicializar con "Todos"
+				updateFilter('todos');
+			})();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,291 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import HeaderWP from "../../components/HeaderWP.astro";
+import SidebarWP from "../../components/SidebarWP.astro";
+import "../../styles/global.css";
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <BaseHead
+            title="Escritorio - Voltiak CMS"
+            description="Panel de administración Voltiak CMS"
+        />
+    </head>
+    <body class="bg-[#f0f0f1] min-h-screen min-w-screen ">
+        <HeaderWP />
+
+        <!-- Main content area -->
+        <main class="flex">
+            <SidebarWP />
+            <div class="flex-1 max-w-7xl mx-auto p-4 md:p-6">
+                <!-- Page header -->
+                <div class="mb-4 md:mb-6">
+                    <h1
+                        class="text-xl md:text-2xl lg:text-3xl font-bold text-[#23282d] mb-1 md:mb-2 font-family-HelveticaNeue"
+                    >
+                        Escritorio
+                    </h1>
+                    <p
+                        class="text-xs md:text-sm text-gray-600 font-family-HelveticaNeue"
+                    >
+                        Bienvenido al panel de administración de Voltiak
+                    </p>
+                </div>
+
+                <!-- Dashboard widgets -->
+                <div
+                    class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-4 md:mb-6"
+                >
+                    <!-- Widget: Artículos -->
+                    <div
+                        class="bg-white rounded-lg shadow-sm p-4 md:p-6 border border-gray-200"
+                    >
+                        <div class="flex items-center justify-between">
+                            <div class="min-w-0 flex-1">
+                                <p
+                                    class="text-xs md:text-sm text-gray-600 mb-1 font-family-HelveticaNeue truncate"
+                                >
+                                    Artículos
+                                </p>
+                                <p
+                                    class="text-2xl md:text-3xl font-bold text-[#23282d] font-family-HelveticaNeue"
+                                >
+                                    12
+                                </p>
+                            </div>
+                            <div
+                                class="w-10 h-10 md:w-12 md:h-12 bg-blue-100 rounded-lg flex items-center justify-center shrink-0 ml-2"
+                            >
+                                <svg
+                                    class="w-5 h-5 md:w-6 md:h-6 text-blue-600"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Widget: Productos -->
+                    <div
+                        class="bg-white rounded-lg shadow-sm p-4 md:p-6 border border-gray-200"
+                    >
+                        <div class="flex items-center justify-between">
+                            <div class="min-w-0 flex-1">
+                                <p
+                                    class="text-xs md:text-sm text-gray-600 mb-1 font-family-HelveticaNeue truncate"
+                                >
+                                    Productos
+                                </p>
+                                <p
+                                    class="text-2xl md:text-3xl font-bold text-[#23282d] font-family-HelveticaNeue"
+                                >
+                                    8
+                                </p>
+                            </div>
+                            <div
+                                class="w-10 h-10 md:w-12 md:h-12 bg-green-100 rounded-lg flex items-center justify-center shrink-0 ml-2"
+                            >
+                                <svg
+                                    class="w-5 h-5 md:w-6 md:h-6 text-green-600"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Widget: Comentarios -->
+                    <div
+                        class="bg-white rounded-lg shadow-sm p-4 md:p-6 border border-gray-200"
+                    >
+                        <div class="flex items-center justify-between">
+                            <div class="min-w-0 flex-1">
+                                <p
+                                    class="text-xs md:text-sm text-gray-600 mb-1 font-family-HelveticaNeue truncate"
+                                >
+                                    Comentarios
+                                </p>
+                                <p
+                                    class="text-2xl md:text-3xl font-bold text-[#23282d] font-family-HelveticaNeue"
+                                >
+                                    5
+                                </p>
+                            </div>
+                            <div
+                                class="w-10 h-10 md:w-12 md:h-12 bg-yellow-100 rounded-lg flex items-center justify-center shrink-0 ml-2"
+                            >
+                                <svg
+                                    class="w-5 h-5 md:w-6 md:h-6 text-yellow-600"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Widget: Usuarios -->
+                    <div
+                        class="bg-white rounded-lg shadow-sm p-4 md:p-6 border border-gray-200"
+                    >
+                        <div class="flex items-center justify-between">
+                            <div class="min-w-0 flex-1">
+                                <p
+                                    class="text-xs md:text-sm text-gray-600 mb-1 font-family-HelveticaNeue truncate"
+                                >
+                                    Usuarios
+                                </p>
+                                <p
+                                    class="text-2xl md:text-3xl font-bold text-[#23282d] font-family-HelveticaNeue"
+                                >
+                                    3
+                                </p>
+                            </div>
+                            <div
+                                class="w-10 h-10 md:w-12 md:h-12 bg-purple-100 rounded-lg flex items-center justify-center shrink-0 ml-2"
+                            >
+                                <svg
+                                    class="w-5 h-5 md:w-6 md:h-6 text-purple-600"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent activity -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+                    <!-- Recent posts -->
+                    <div
+                        class="bg-white rounded-lg shadow-sm border border-gray-200"
+                    >
+                        <div class="p-4 md:p-6 border-b border-gray-200">
+                            <h2
+                                class="text-base md:text-lg font-semibold text-[#23282d] font-family-HelveticaNeue"
+                            >
+                                Artículos Recientes
+                            </h2>
+                        </div>
+                        <div class="p-4 md:p-6">
+                            <ul class="space-y-3 md:space-y-4">
+                                <li
+                                    class="flex items-start justify-between gap-3 pb-3 md:pb-4 border-b border-gray-100 last:border-0"
+                                >
+                                    <div class="min-w-0 flex-1">
+                                        <p
+                                            class="text-xs md:text-sm font-medium text-[#23282d] font-family-HelveticaNeue mb-1"
+                                        >
+                                            Nuevo artículo de blog
+                                        </p>
+                                        <p
+                                            class="text-xs text-gray-500 font-family-HelveticaNeue"
+                                        >
+                                            Hace 2 horas
+                                        </p>
+                                    </div>
+                                    <a
+                                        href="/wp-admin/posts"
+                                        class="text-xs md:text-sm text-[#2271b1] hover:text-[#135e96] font-family-HelveticaNeue whitespace-nowrap shrink-0"
+                                    >
+                                        Ver →
+                                    </a>
+                                </li>
+                                <li
+                                    class="flex items-start justify-between gap-3 pb-3 md:pb-4 border-b border-gray-100 last:border-0"
+                                >
+                                    <div class="min-w-0 flex-1">
+                                        <p
+                                            class="text-xs md:text-sm font-medium text-[#23282d] font-family-HelveticaNeue mb-1"
+                                        >
+                                            Actualización de producto
+                                        </p>
+                                        <p
+                                            class="text-xs text-gray-500 font-family-HelveticaNeue"
+                                        >
+                                            Hace 1 día
+                                        </p>
+                                    </div>
+                                    <a
+                                        href="/wp-admin/posts"
+                                        class="text-xs md:text-sm text-[#2271b1] hover:text-[#135e96] font-family-HelveticaNeue whitespace-nowrap shrink-0"
+                                    >
+                                        Ver →
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Quick actions -->
+                    <div
+                        class="bg-white rounded-lg shadow-sm border border-gray-200"
+                    >
+                        <div class="p-4 md:p-6 border-b border-gray-200">
+                            <h2
+                                class="text-base md:text-lg font-semibold text-[#23282d] font-family-HelveticaNeue"
+                            >
+                                Acciones Rápidas
+                            </h2>
+                        </div>
+                        <div class="p-4 md:p-6">
+                            <div class="space-y-2 md:space-y-3">
+                                <a
+                                    href="/wp-admin/posts?action=new"
+                                    class="block w-full text-left px-3 md:px-4 py-2.5 md:py-3 bg-[#2271b1] text-white rounded hover:bg-[#135e96] transition-colors font-family-HelveticaNeue text-sm md:text-base"
+                                >
+                                    + Nuevo Artículo
+                                </a>
+                                <a
+                                    href="/wp-admin/products?action=new"
+                                    class="block w-full text-left px-3 md:px-4 py-2.5 md:py-3 bg-white border border-gray-300 text-[#23282d] rounded hover:bg-gray-50 transition-colors font-family-HelveticaNeue text-sm md:text-base"
+                                >
+                                    + Nuevo Producto
+                                </a>
+                                <a
+                                    href="/wp-admin/media?action=upload"
+                                    class="block w-full text-left px-3 md:px-4 py-2.5 md:py-3 bg-white border border-gray-300 text-[#23282d] rounded hover:bg-gray-50 transition-colors font-family-HelveticaNeue text-sm md:text-base"
+                                >
+                                    + Subir Medios
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

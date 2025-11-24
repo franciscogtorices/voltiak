@@ -1,0 +1,55 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+
+	<body class="font-['Atkinson',sans-serif] m-0 p-0 text-left bg-gradient-to-b from-[rgba(229,233,240,0.5)] to-white bg-no-repeat bg-[length:100%_600px] break-words overflow-wrap-anywhere text-gray-dark text-xl leading-[1.7] max-[720px]:text-lg">
+		<Header />
+		<main class="w-[calc(100%-2em)] max-w-full m-0">
+			<article>
+				<div class="w-full">
+					{heroImage && (
+						<Image
+							width={1020}
+							height={510}
+							src={heroImage}
+							alt=""
+							class="max-w-full h-auto rounded-lg block mx-auto shadow-box"
+						/>
+					)}
+				</div>
+				<div class="prose w-[720px] max-w-[calc(100%-2em)] mx-auto p-4 text-gray-dark [&_p]:mb-4 [&_.prose_p]:mb-8 [&_code]:px-[2px] [&_code]:py-0 [&_code]:bg-gray-light [&_code]:rounded-[2px] [&_pre]:p-6 [&_pre]:rounded-lg [&_pre>code]:p-0 [&_pre>code]:bg-transparent [&_blockquote]:border-l-4 [&_blockquote]:border-l-accent [&_blockquote]:pl-5 [&_blockquote]:m-0 [&_blockquote]:text-[1.333em] [&_hr]:border-0 [&_hr]:border-t [&_hr]:border-t-gray-light [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-lg [&_textarea]:w-full [&_textarea]:text-base [&_input]:text-base [&_table]:w-full [&_h1]:m-0 [&_h1]:mb-2 [&_h1]:text-black [&_h1]:leading-[1.2] [&_h1]:text-[3.052em] [&_h2]:m-0 [&_h2]:mb-2 [&_h2]:text-black [&_h2]:leading-[1.2] [&_h2]:text-[2.441em] [&_h3]:m-0 [&_h3]:mb-2 [&_h3]:text-black [&_h3]:leading-[1.2] [&_h3]:text-[1.953em] [&_h4]:m-0 [&_h4]:mb-2 [&_h4]:text-black [&_h4]:leading-[1.2] [&_h4]:text-[1.563em] [&_h5]:m-0 [&_h5]:mb-2 [&_h5]:text-black [&_h5]:leading-[1.2] [&_h5]:text-[1.25em] [&_h6]:m-0 [&_h6]:mb-2 [&_h6]:text-black [&_h6]:leading-[1.2] [&_strong]:font-bold [&_b]:font-bold [&_a]:text-accent [&_a:hover]:text-accent">
+					<div class="mb-4 py-4 text-center leading-none">
+						<div class="mb-2 text-gray">
+							<FormattedDate date={pubDate} />
+							{
+								updatedDate && (
+									<div class="italic">
+										Last updated on <FormattedDate date={updatedDate} />
+									</div>
+								)
+							}
+						</div>
+						<h1 class="m-0 mb-2 text-black leading-[1.2] text-[3.052em]">{title}</h1>
+						<hr class="border-none border-t border-gray-light" />
+					</div>
+					<slot />
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

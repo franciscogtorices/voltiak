@@ -1,0 +1,642 @@
+---
+import { Image } from "astro:assets";
+import BaseHead from "../../components/BaseHead.astro";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import { productsData } from "../../data/products";
+
+export async function getStaticPaths() {
+	return Object.keys(productsData).map((slug) => ({
+		params: { slug },
+		props: { product: productsData[slug] },
+	}));
+}
+
+const { product } = Astro.props;
+
+if (!product) {
+	return Astro.redirect("/store");
+}
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead
+			title={`${product.name} - Voltiak`}
+			description={product.description}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="min-h-screen bg-white">
+			<!-- Hero Section -->
+			<section class="pt-24 md:pt-40 pb-12 md:pb-16 px-4 md:px-8">
+				<div class="max-w-7xl mx-auto">
+					<div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+						<div>
+							<p class="text-sm md:text-base text-gray-600 mb-2 font-family-HelveticaNeue">
+								{product.subtitle}
+							</p>
+							<h1 class="text-5xl md:text-7xl font-bold text-[#05192d] mb-6 font-family-HelveticaNeue">
+								{product.name}
+							</h1>
+							<div class="flex flex-col sm:flex-row gap-4 mb-8">
+								<button
+									class="flex items-center justify-center gap-2 bg-[#05192d] text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-base md:text-lg font-medium hover:bg-[#0a2540] transition-colors font-family-HelveticaNeue"
+								>
+									Comprar
+									<svg
+										width="20"
+										height="20"
+										viewBox="0 0 24 24"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 5V19M5 12H19"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+										></path>
+									</svg>
+								</button>
+								<button
+									class="flex items-center justify-center gap-2 bg-gray-200 text-[#05192d] px-6 py-3 md:px-8 md:py-4 rounded-full text-base md:text-lg font-medium hover:bg-gray-300 transition-colors font-family-HelveticaNeue"
+								>
+									Descargar ficha técnica
+									<svg
+										width="20"
+										height="20"
+										viewBox="0 0 24 24"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15M7 10L12 15M12 15L17 10M12 15V3"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										></path>
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="relative">
+							<div class="relative z-10">
+								<Image
+									src={product.image}
+									alt={product.name}
+									class="w-full h-auto"
+								/>
+							</div>
+							<div
+								class="absolute inset-0 bg-blue-500 opacity-20 blur-3xl -z-10"
+							></div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Description Section -->
+			<section class="py-8 md:py-12 px-4 md:px-8">
+				<div class="max-w-4xl mx-auto">
+					<p class="text-lg md:text-xl text-gray-700 leading-relaxed font-family-HelveticaNeue">
+						{product.description}
+					</p>
+				</div>
+			</section>
+
+			<!-- Efficiency Section -->
+			<section class="py-12 md:py-20 px-4 md:px-8 bg-gray-50">
+				<div class="max-w-7xl mx-auto">
+					<h2 class="text-3xl md:text-5xl font-bold text-[#05192d] mb-8 md:mb-12 text-center font-family-HelveticaNeue">
+						Eficiencia que se siente.
+					</h2>
+					<div class="text-center mb-12">
+						<div class="flex items-baseline justify-center gap-2 mb-4">
+							<span
+								class="text-5xl md:text-7xl font-bold text-[#05192d] font-family-HelveticaNeue"
+							>
+								{product.airFlow}
+							</span>
+							<span
+								class="text-2xl md:text-3xl text-gray-600 font-family-HelveticaNeue"
+							>
+								{product.airFlowUnit}
+							</span>
+						</div>
+						<p
+							class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto font-family-HelveticaNeue"
+						>
+							{product.airFlowDescription}
+						</p>
+					</div>
+					<div class="grid md:grid-cols-3 gap-6 md:gap-8">
+						{product.features.map((feature: any) => (
+							<div
+								class="bg-white rounded-lg p-6 md:p-8 shadow-sm text-center"
+							>
+								<div class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 flex items-center justify-center">
+									{feature.icon === "thermometer" && (
+										<svg
+											width="48"
+											height="48"
+											viewBox="0 0 24 24"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+											class="text-red-500"
+										>
+											<path
+												d="M14 4V2C14 1.44772 13.5523 1 13 1H11C10.4477 1 10 1.44772 10 2V4M14 4H10M14 4V6M10 4V6M6 8V20C6 21.1046 6.89543 22 8 22H16C17.1046 22 18 21.1046 18 20V8H6Z"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											></path>
+										</svg>
+									)}
+									{feature.icon === "battery" && (
+										<svg
+											width="48"
+											height="48"
+											viewBox="0 0 24 24"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+											class="text-green-500"
+										>
+											<rect
+												x="2"
+												y="7"
+												width="18"
+												height="10"
+												rx="2"
+												stroke="currentColor"
+												stroke-width="2"
+											></rect>
+											<path
+												d="M20 11V13"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+											></path>
+										</svg>
+									)}
+									{feature.icon === "factory" && (
+										<svg
+											width="48"
+											height="48"
+											viewBox="0 0 24 24"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+											class="text-blue-500"
+										>
+											<path
+												d="M3 21H21M5 21V7L13 2V7M5 21L5 11H9M13 7V21M13 7L9 11V21M13 7L17 11V21M9 11H17"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											></path>
+										</svg>
+									)}
+								</div>
+								<p
+									class="text-sm md:text-base text-gray-700 font-family-HelveticaNeue"
+								>
+									{feature.text}
+								</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<!-- Motor Section -->
+			<section class="py-12 md:py-20 px-4 md:px-8">
+				<div class="max-w-7xl mx-auto">
+					<div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+						<div>
+							<h2
+								class="text-3xl md:text-4xl font-bold text-[#05192d] mb-6 font-family-HelveticaNeue"
+							>
+								{product.motorTitle}
+							</h2>
+							<p
+								class="text-lg md:text-xl text-gray-700 leading-relaxed font-family-HelveticaNeue"
+							>
+								{product.motorDescription}
+							</p>
+						</div>
+						<div class="relative">
+							<Image
+								src={product.image}
+								alt="Motor del ventilador"
+								class="w-full h-auto rounded-lg"
+							/>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Quiet Operation Section -->
+			<section class="py-12 md:py-20 px-4 md:px-8 bg-gray-50">
+				<div class="max-w-4xl mx-auto text-center">
+					<h2
+						class="text-3xl md:text-5xl font-bold text-[#05192d] mb-8 font-family-HelveticaNeue"
+					>
+						Potencia sin ruido.
+					</h2>
+					<div class="mb-6">
+						<svg
+							width="100%"
+							height="60"
+							viewBox="0 0 400 60"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="text-blue-500"
+						>
+							<path
+								d="M0 30 Q100 10, 200 30 T400 30"
+								stroke="currentColor"
+								stroke-width="3"
+								fill="none"
+							></path>
+							<path
+								d="M0 30 Q100 50, 200 30 T400 30"
+								stroke="currentColor"
+								stroke-width="3"
+								fill="none"
+							></path>
+						</svg>
+					</div>
+					<p
+						class="text-base md:text-lg text-gray-600 font-family-HelveticaNeue"
+					>
+						{product.noiseDescription}
+					</p>
+				</div>
+			</section>
+
+			<!-- Applications Section -->
+			<section class="py-12 md:py-20 px-4 md:px-8">
+				<div class="max-w-7xl mx-auto">
+					<h2
+						class="text-3xl md:text-4xl font-bold text-[#05192d] mb-8 md:mb-12 font-family-HelveticaNeue"
+					>
+						Hecho para espacios que producen.
+					</h2>
+					<div class="relative">
+						<div
+							id="applications-carousel"
+							class="flex gap-4 md:gap-6 overflow-x-auto pb-4 scrollbar-hide"
+						>
+							{product.applications.map((app: any) => (
+								<div
+									class="min-w-[280px] md:min-w-[320px] bg-white rounded-lg overflow-hidden shadow-sm"
+								>
+									<div class="aspect-video bg-gray-100">
+										<Image
+											src={app.image}
+											alt={app.name}
+											class="w-full h-full object-cover"
+										/>
+									</div>
+									<div class="p-4">
+										<h3
+											class="text-lg font-semibold text-[#05192d] font-family-HelveticaNeue"
+										>
+											{app.name}
+										</h3>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- FAQ Section -->
+			<section class="py-12 md:py-20 px-4 md:px-8 bg-gray-50 relative">
+				<div class="max-w-7xl mx-auto">
+					<div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+						<div class="space-y-4">
+							{product.faqs.map((faq: any, index: number) => (
+								<div class="faq-item bg-white rounded-lg p-4 md:p-6 shadow-sm">
+									<button
+										class="faq-question w-full flex items-center justify-between text-left gap-4"
+										data-index={index}
+									>
+										<span
+											class="text-base md:text-lg font-medium text-[#05192d] font-family-HelveticaNeue"
+										>
+											{faq.question}
+										</span>
+										<svg
+											class="faq-icon w-6 h-6 text-[#05192d] shrink-0 transition-transform"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M12 4v16m8-8H4"
+											></path>
+										</svg>
+									</button>
+									<div
+										class="faq-answer hidden mt-4 text-gray-600 font-family-HelveticaNeue"
+									>
+										{faq.answer}
+									</div>
+								</div>
+							))}
+						</div>
+						<div class="relative">
+							<Image
+								src={product.image}
+								alt={product.name}
+								class="w-full h-auto rounded-lg"
+							/>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Specifications Table -->
+			<section class="py-12 md:py-20 px-4 md:px-8 bg-white">
+				<div class="max-w-7xl mx-auto">
+					<h2
+						class="text-2xl md:text-4xl font-bold text-[#05192d] mb-8 md:mb-12 text-center font-family-HelveticaNeue"
+					>
+						{product.specifications.title}
+					</h2>
+					<div class="overflow-x-auto">
+						<table
+							class="w-full border-collapse bg-white rounded-lg shadow-sm"
+						>
+							<thead>
+								<tr class="bg-black text-white">
+									<th
+										class="px-4 py-3 md:px-6 md:py-4 text-left text-sm md:text-base font-semibold font-family-HelveticaNeue"
+									>
+										Modelo
+									</th>
+									{product.specifications.models.map((model: any) => (
+										<th
+											class="px-4 py-3 md:px-6 md:py-4 text-center text-sm md:text-base font-semibold font-family-HelveticaNeue"
+										>
+											{model.model}
+										</th>
+									))}
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="border-b">
+									<td
+										class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base font-medium text-[#05192d] font-family-HelveticaNeue"
+									>
+										Diámetro
+									</td>
+									{product.specifications.models.map((model: any) => (
+										<td
+											class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base text-gray-700 text-center font-family-HelveticaNeue"
+										>
+											{model.diameter}
+										</td>
+									))}
+								</tr>
+								<tr class="border-b bg-gray-50">
+									<td
+										class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base font-medium text-[#05192d] font-family-HelveticaNeue"
+									>
+										Rango de velocidad
+									</td>
+									{product.specifications.models.map((model: any) => (
+										<td
+											class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base text-gray-700 text-center font-family-HelveticaNeue"
+										>
+											{model.speedRange}
+										</td>
+									))}
+								</tr>
+								<tr class="border-b">
+									<td
+										class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base font-medium text-[#05192d] font-family-HelveticaNeue"
+									>
+										Volumen máximo de aire
+									</td>
+									{product.specifications.models.map((model: any) => (
+										<td
+											class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base text-gray-700 text-center font-family-HelveticaNeue"
+										>
+											{model.maxAirVolume}
+										</td>
+									))}
+								</tr>
+								<tr class="border-b bg-gray-50">
+									<td
+										class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base font-medium text-[#05192d] font-family-HelveticaNeue"
+									>
+										Motor
+									</td>
+									{product.specifications.models.map((model: any) => (
+										<td
+											class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base text-gray-700 text-center font-family-HelveticaNeue"
+										>
+											{model.motor}
+										</td>
+									))}
+								</tr>
+								<tr class="border-b">
+									<td
+										class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base font-medium text-[#05192d] font-family-HelveticaNeue"
+									>
+										Potencia de Motor
+									</td>
+									{product.specifications.models.map((model: any) => (
+										<td
+											class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base text-gray-700 text-center font-family-HelveticaNeue"
+										>
+											{model.motorPower}
+										</td>
+									))}
+								</tr>
+								<tr class="border-b bg-gray-50">
+									<td
+										class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base font-medium text-[#05192d] font-family-HelveticaNeue"
+									>
+										Voltaje
+									</td>
+									{product.specifications.models.map((model: any) => (
+										<td
+											class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base text-gray-700 text-center font-family-HelveticaNeue"
+										>
+											{model.voltage}
+										</td>
+									))}
+								</tr>
+								<tr class="border-b">
+									<td
+										class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base font-medium text-[#05192d] font-family-HelveticaNeue"
+									>
+										Amperaje carga completa
+									</td>
+									{product.specifications.models.map((model: any) => (
+										<td
+											class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base text-gray-700 text-center font-family-HelveticaNeue"
+										>
+											{model.amperage}
+										</td>
+									))}
+								</tr>
+								<tr class="border-b bg-gray-50">
+									<td
+										class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base font-medium text-[#05192d] font-family-HelveticaNeue"
+									>
+										Nivel de ruido
+									</td>
+									{product.specifications.models.map((model: any) => (
+										<td
+											class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base text-gray-700 text-center font-family-HelveticaNeue"
+										>
+											{model.noiseLevel}
+										</td>
+									))}
+								</tr>
+								<tr class="border-b">
+									<td
+										class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base font-medium text-[#05192d] font-family-HelveticaNeue"
+									>
+										Peso
+									</td>
+									{product.specifications.models.map((model: any) => (
+										<td
+											class="px-4 py-3 md:px-6 md:py-4 text-sm md:text-base text-gray-700 text-center font-family-HelveticaNeue"
+										>
+											{model.weight}
+										</td>
+									))}
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<p
+						class="text-sm md:text-base text-gray-600 text-center mt-6 font-family-HelveticaNeue"
+					>
+						{product.specifications.description}
+					</p>
+				</div>
+			</section>
+
+			<!-- Model Selector and Downloads -->
+			<section class="py-12 md:py-20 px-4 md:px-8 bg-gray-50">
+				<div class="max-w-4xl mx-auto">
+					<div class="bg-white rounded-lg p-6 md:p-8 shadow-sm">
+						<div class="flex flex-col sm:flex-row gap-4 mb-6">
+							<select
+								id="model-selector"
+								class="flex-1 px-4 py-3 border border-gray-300 rounded-lg text-[#05192d] font-family-HelveticaNeue focus:outline-none focus:ring-2 focus:ring-[#05192d]"
+							>
+								{product.specifications.models.map((model: any) => (
+									<option value={model.model}>{model.model}</option>
+								))}
+							</select>
+							<button
+								class="flex items-center justify-center gap-2 bg-[#05192d] text-white px-6 py-3 rounded-lg text-base font-medium hover:bg-[#0a2540] transition-colors font-family-HelveticaNeue"
+							>
+								Comprar
+								<svg
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M12 5V19M5 12H19"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+									></path>
+								</svg>
+							</button>
+						</div>
+						<div class="space-y-3">
+							<a
+								href="#"
+								class="block text-[#05192d] font-medium underline hover:text-[#0a2540] transition-colors font-family-HelveticaNeue"
+							>
+								Ficha técnica (PDF)
+							</a>
+							<a
+								href="#"
+								class="block text-[#05192d] font-medium underline hover:text-[#0a2540] transition-colors font-family-HelveticaNeue"
+							>
+								Manual de instalación (PDF)
+							</a>
+							<a
+								href="#"
+								class="block text-[#05192d] font-medium underline hover:text-[#0a2540] transition-colors font-family-HelveticaNeue"
+							>
+								Descargar DWG's
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+
+		<script>
+			// FAQ Toggle functionality
+			(function () {
+				const faqQuestions = document.querySelectorAll(".faq-question");
+				faqQuestions.forEach((question) => {
+					question.addEventListener("click", () => {
+						const faqItem = question.closest(".faq-item");
+						const answer = faqItem?.querySelector(
+							".faq-answer"
+						) as HTMLElement;
+						const icon = question.querySelector(
+							".faq-icon"
+						) as HTMLElement;
+
+						if (answer && icon) {
+							const isOpen = !answer.classList.contains("hidden");
+
+							// Close all FAQs
+							document
+								.querySelectorAll(".faq-answer")
+								.forEach((ans) => ans.classList.add("hidden"));
+							document
+								.querySelectorAll(".faq-icon")
+								.forEach((ic) => {
+									(ic as HTMLElement).style.transform = "rotate(0deg)";
+								});
+
+							// Toggle current FAQ
+							if (!isOpen) {
+								answer.classList.remove("hidden");
+								icon.style.transform = "rotate(45deg)";
+							}
+						}
+					});
+				});
+			})();
+		</script>
+
+		<style>
+			.scrollbar-hide {
+				-ms-overflow-style: none;
+				scrollbar-width: none;
+			}
+			.scrollbar-hide::-webkit-scrollbar {
+				display: none;
+			}
+		</style>
+	</body>
+</html>

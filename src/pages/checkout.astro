@@ -1,0 +1,351 @@
+---
+import { Image } from "astro:assets";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Grupo4030 from "../assets/Grupo 4030.png";
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead
+			title="Checkout - Voltiak"
+			description="Finaliza tu compra en Voltiak"
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="min-h-screen bg-white pt-44 md:pt-60 pb-16">
+			<div class="max-w-7xl mx-auto px-4 md:px-8">
+				<div class="grid md:grid-cols-3 gap-8 md:gap-12">
+					<!-- Columna izquierda - Formulario de checkout -->
+					<div class="md:col-span-2">
+						<!-- Título -->
+						<h1
+							class="text-4xl md:text-6xl font-bold text-[#05192d] mb-8 md:mb-12 font-family-HelveticaNeue"
+						>
+							Checkout
+						</h1>
+
+						<!-- Sección CONTACTO -->
+						<div class="mb-8 pb-8 border-b border-gray-200">
+							<div class="flex items-start justify-between mb-4">
+								<h2
+									class="text-lg md:text-xl font-semibold text-[#05192d] font-family-HelveticaNeue"
+								>
+									CONTACTO
+								</h2>
+								<button
+									class="text-sm text-[#05192d] underline hover:text-[#0a2540] transition-colors font-family-HelveticaNeue"
+								>
+									EDITAR
+								</button>
+							</div>
+							<p class="text-base text-gray-700 font-family-HelveticaNeue">
+								isabellaalutz@gmail.com
+							</p>
+						</div>
+
+						<!-- Sección DIRECCIÓN -->
+						<div class="mb-8 pb-8 border-b border-gray-200">
+							<div class="flex items-start justify-between mb-4">
+								<h2
+									class="text-lg md:text-xl font-semibold text-[#05192d] font-family-HelveticaNeue"
+								>
+									DIRECCIÓN
+								</h2>
+								<button
+									class="text-sm text-[#05192d] underline hover:text-[#0a2540] transition-colors font-family-HelveticaNeue"
+								>
+									EDITAR
+								</button>
+							</div>
+							<div class="space-y-1 text-base text-gray-700 font-family-HelveticaNeue">
+								<p>Pellegrini 431, Depto 4, Tandil, Buenos Aires, Argentina.</p>
+								<p>CP 7000</p>
+								<p>2494512001</p>
+								<p>DNI 37766389</p>
+							</div>
+						</div>
+
+						<!-- Sección OPCIONES DE ENTREGA -->
+						<div class="mb-8 pb-8 border-b border-gray-200">
+							<div class="flex items-start justify-between mb-4">
+								<h2
+									class="text-lg md:text-xl font-semibold text-[#05192d] font-family-HelveticaNeue"
+								>
+									OPCIONES DE ENTREGA
+								</h2>
+								<button
+									class="text-sm text-[#05192d] underline hover:text-[#0a2540] transition-colors font-family-HelveticaNeue"
+								>
+									EDITAR
+								</button>
+							</div>
+							<div class="flex items-center justify-between">
+								<div>
+									<p class="text-base font-medium text-[#05192d] mb-1 font-family-HelveticaNeue">
+										Entrega estándar
+									</p>
+									<p class="text-sm text-gray-600 font-family-HelveticaNeue">
+										Jueves 19 HS
+									</p>
+								</div>
+								<p class="text-lg font-semibold text-[#05192d] font-family-HelveticaNeue">
+									$8,999
+								</p>
+							</div>
+						</div>
+
+						<!-- Sección PAGO -->
+						<div class="mb-8">
+							<h2
+								class="text-lg md:text-xl font-semibold text-[#05192d] mb-6 font-family-HelveticaNeue"
+							>
+								PAGO
+							</h2>
+
+							<!-- Método de pago seleccionado -->
+							<div class="mb-6">
+								<p class="text-base font-medium text-[#05192d] mb-4 font-family-HelveticaNeue">
+									Tarjeta de Débito o Crédito
+								</p>
+								<!-- Logos de tarjetas -->
+								<div class="flex items-center gap-3 mb-6">
+									<div class="w-12 h-8 bg-blue-600 rounded flex items-center justify-center">
+										<span class="text-white text-xs font-bold">VISA</span>
+									</div>
+									<div
+										class="w-12 h-8 bg-gray-300 rounded flex items-center justify-center opacity-50"
+									>
+										<span class="text-gray-600 text-xs font-bold">MC</span>
+									</div>
+									<div class="w-12 h-8 bg-blue-500 rounded flex items-center justify-center">
+										<span class="text-white text-xs font-bold">AM EX</span>
+									</div>
+									<div class="w-12 h-8 bg-orange-500 rounded flex items-center justify-center">
+										<span class="text-white text-xs font-bold">N</span>
+									</div>
+								</div>
+							</div>
+
+							<!-- Campos del formulario de tarjeta -->
+							<form class="space-y-4">
+								<!-- Nombre -->
+								<div>
+									<label
+										for="card-name"
+										class="block text-sm font-medium text-[#05192d] mb-2 font-family-HelveticaNeue"
+									>
+										Nombre
+									</label>
+									<input
+										type="text"
+										id="card-name"
+										name="card-name"
+										required
+										class="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#05192d] focus:border-transparent font-family-HelveticaNeue"
+										placeholder="Nombre como aparece en la tarjeta"
+									/>
+								</div>
+
+								<!-- Número de tarjeta -->
+								<div>
+									<label
+										for="card-number"
+										class="block text-sm font-medium text-[#05192d] mb-2 font-family-HelveticaNeue"
+									>
+										Número de Tarjeta
+									</label>
+									<input
+										type="text"
+										id="card-number"
+										name="card-number"
+										required
+										maxlength="19"
+										class="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#05192d] focus:border-transparent font-family-HelveticaNeue"
+										placeholder="1234 5678 9012 3456"
+									/>
+								</div>
+
+								<!-- Fecha de vencimiento y CVV -->
+								<div class="grid grid-cols-2 gap-4">
+									<div>
+										<label
+											for="card-expiry"
+											class="block text-sm font-medium text-[#05192d] mb-2 font-family-HelveticaNeue"
+										>
+											MMAA
+										</label>
+										<input
+											type="text"
+											id="card-expiry"
+											name="card-expiry"
+											required
+											maxlength="4"
+											class="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#05192d] focus:border-transparent font-family-HelveticaNeue"
+											placeholder="MMAA"
+										/>
+									</div>
+									<div>
+										<label
+											for="card-cvv"
+											class="block text-sm font-medium text-[#05192d] mb-2 font-family-HelveticaNeue"
+										>
+											CVV
+										</label>
+										<input
+											type="text"
+											id="card-cvv"
+											name="card-cvv"
+											required
+											maxlength="4"
+											class="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#05192d] focus:border-transparent font-family-HelveticaNeue"
+											placeholder="123"
+										/>
+									</div>
+								</div>
+							</form>
+
+							<!-- Botón Finalizar Compra -->
+							<button
+								type="submit"
+								class="w-full mt-8 bg-[#05192d] text-white px-8 py-4 rounded-full text-base font-medium hover:bg-[#0a2540] transition-colors flex items-center justify-center gap-3 font-family-HelveticaNeue"
+							>
+								Finalizar Compra
+								<svg
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M5 12H19M19 12L12 5M19 12L12 19"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									></path>
+								</svg>
+							</button>
+						</div>
+					</div>
+
+					<!-- Columna derecha - Resumen del pedido -->
+					<div class="md:col-span-1">
+						<!-- Botón Continuar comprando -->
+						<div class="mb-6">
+							<a
+								href="/store"
+								class="inline-flex items-center gap-2 bg-[#05192d] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-[#0a2540] transition-colors font-family-HelveticaNeue"
+							>
+								Continuar comprando
+								<svg
+									width="16"
+									height="16"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M5 12H19M19 12L12 5M19 12L12 19"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									></path>
+								</svg>
+							</a>
+						</div>
+
+						<!-- Caja de resumen -->
+						<div class="bg-white border border-gray-200 rounded-lg p-6 sticky top-24">
+							<h2
+								class="text-xl font-bold text-[#05192d] mb-6 font-family-HelveticaNeue"
+							>
+								Resumen del pedido
+							</h2>
+
+							<!-- Items del pedido -->
+							<div class="space-y-4 mb-6 pb-6 border-b border-gray-200">
+								<div class="flex justify-between items-start">
+									<div>
+										<p class="text-sm text-gray-600 font-family-HelveticaNeue">
+											1 producto
+										</p>
+									</div>
+									<p class="text-base font-semibold text-[#05192d] font-family-HelveticaNeue">
+										$ 64.999,00
+									</p>
+								</div>
+								<div class="flex justify-between items-start">
+									<div>
+										<p class="text-sm text-gray-600 font-family-HelveticaNeue">
+											Entrega
+										</p>
+									</div>
+									<p class="text-base font-semibold text-[#05192d] font-family-HelveticaNeue">
+										$ 8.999,00
+									</p>
+								</div>
+							</div>
+
+							<!-- Total -->
+							<div class="mb-4">
+								<div class="flex justify-between items-center mb-2">
+									<span
+										class="text-lg font-bold text-[#05192d] font-family-HelveticaNeue"
+									>
+										Total
+									</span>
+									<span
+										class="text-xl font-bold text-[#05192d] font-family-HelveticaNeue"
+									>
+										$73.998,00
+									</span>
+								</div>
+								<div class="text-xs text-gray-600 space-y-1 font-family-HelveticaNeue">
+									<p>(Precio sin impuestos $ 61.155,37)</p>
+									<p>(IVA incluido $ 12.842,63)</p>
+								</div>
+							</div>
+
+							<!-- Detalles del producto -->
+							<div class="pt-6 border-t border-gray-200">
+								<div class="flex gap-4">
+									<div class="shrink-0">
+										<div class="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden">
+											<Image
+												src={Grupo4030}
+												alt="AirCool"
+												class="w-full h-full object-cover"
+											/>
+										</div>
+									</div>
+									<div class="flex-1 min-w-0">
+										<p
+											class="text-xs text-gray-600 mb-1 font-family-HelveticaNeue"
+										>
+											Ventiladores Industriales
+										</p>
+										<p
+											class="text-sm font-semibold text-[#05192d] mb-1 font-family-HelveticaNeue"
+										>
+											AirCool
+										</p>
+										<p class="text-xs text-gray-500 font-family-HelveticaNeue">
+											MODELO xxxxx
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

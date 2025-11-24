@@ -1,0 +1,321 @@
+---
+import { Image } from "astro:assets";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Grupo4030 from "../assets/Grupo 4030.png";
+import Grupo4036 from "../assets/Grupo 4036.png";
+import BlogPlaceholder3 from "../assets/blog-placeholder-3.jpg";
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title="Carrito - Voltiak" description="Tu carrito de compras Voltiak" />
+	</head>
+	<body>
+		<Header />
+		<main class=" bg-white pt-24 md:pt-40 pb-16">
+			<div class="max-w-5xl mx-auto px-4 md:px-8">
+				<!-- Título -->
+				<h1 class="text-4xl md:text-6xl font-bold text-[#05192d] mb-8 md:mb-12 font-family-HelveticaNeue">
+					Carrito
+				</h1>
+
+				<!-- Contenido del carrito -->
+				<div class="grid md:grid-cols-3 gap-8">
+					<!-- Lista de productos - Ocupa 2 columnas en desktop -->
+					<div class="md:col-span-2">
+						<!-- Estado vacío (oculto por defecto cuando hay productos) -->
+						<div id="empty-cart" class="hidden text-center py-16">
+							<svg
+								width="120"
+								height="120"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								class="mx-auto mb-6 text-gray-300"
+							>
+								<path
+									d="M3.74181 20.5545C4.94143 22 7.17414 22 11.6395 22H12.3607C16.8261 22 19.0589 22 20.2585 20.5545M3.74181 20.5545C2.54219 19.1091 2.95365 16.9146 3.77657 12.5257C4.36179 9.40452 4.65441 7.84393 5.7653 6.92196M3.74181 20.5545C3.74181 20.5545 3.74181 20.5545 3.74181 20.5545ZM20.2585 20.5545C21.4581 19.1091 21.0466 16.9146 20.2237 12.5257C19.6385 9.40452 19.3459 7.84393 18.235 6.92196M20.2585 20.5545C20.2585 20.5545 20.2585 20.5545 20.2585 20.5545ZM18.235 6.92196C17.1241 6 15.5363 6 12.3607 6H11.6395C8.46398 6 6.8762 6 5.7653 6.92196M18.235 6.92196C18.235 6.92196 18.235 6.92196 18.235 6.92196ZM5.7653 6.92196C5.7653 6.92196 5.7653 6.92196 5.7653 6.92196Z"
+									stroke="currentColor"
+									stroke-width="2"
+									fill="none"
+								></path>
+								<path
+									d="M9 6V5C9 3.34315 10.3431 2 12 2C13.6569 2 15 3.34315 15 5V6"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									fill="none"
+								></path>
+							</svg>
+							<h2 class="text-2xl font-bold text-[#05192d] mb-4 font-family-HelveticaNeue">
+								Tu carrito está vacío
+							</h2>
+							<p class="text-gray-600 mb-6 font-family-HelveticaNeue">
+								Agrega productos desde la tienda para comenzar tu compra.
+							</p>
+							<a
+								href="/store"
+								class="inline-flex items-center gap-2 bg-[#05192d] text-white px-6 py-3 rounded-full text-base font-medium hover:bg-[#0a2540] transition-colors font-family-HelveticaNeue"
+							>
+								Ir a la tienda
+							</a>
+						</div>
+
+						<!-- Lista de productos -->
+						<div id="cart-items" class="space-y-4">
+							<!-- Producto 1 -->
+							<div class="cart-item bg-white border border-gray-200 rounded-lg p-4 md:p-6 flex flex-col md:flex-row gap-4">
+								<!-- Imagen del producto -->
+								<div class="shrink-0">
+									<div class="w-24 h-24 md:w-32 md:h-32 bg-gray-100 rounded-lg overflow-hidden">
+										<Image
+											src={Grupo4030}
+											alt="AirFree"
+											class="w-full h-full object-cover"
+										/>
+									</div>
+								</div>
+
+								<!-- Información del producto -->
+								<div class="flex-1 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+									<div class="flex-1">
+										<p class="text-sm text-gray-600 mb-1 font-family-HelveticaNeue">
+											Ventiladores Industriales
+										</p>
+										<h3 class="text-lg font-semibold text-[#05192d] mb-2 font-family-HelveticaNeue">
+											AirFree
+										</h3>
+										<p class="text-xl font-bold text-[#05192d] font-family-HelveticaNeue">
+											$45,000 MXN
+										</p>
+									</div>
+
+									<!-- Controles: cantidad y eliminar -->
+									<div class="flex items-center gap-4">
+										<!-- Selector de cantidad -->
+										<div class="flex items-center gap-2 border border-gray-300 rounded-lg">
+											<button
+												class="quantity-btn w-10 h-10 flex items-center justify-center text-[#05192d] hover:bg-gray-100 transition-colors font-family-HelveticaNeue"
+												data-action="decrease"
+											>
+												<svg
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<path
+														d="M5 12H19"
+														stroke="currentColor"
+														stroke-width="2"
+														stroke-linecap="round"
+													></path>
+												</svg>
+											</button>
+											<span
+												class="quantity-value w-12 text-center font-medium text-[#05192d] font-family-HelveticaNeue"
+											>
+												1
+											</span>
+											<button
+												class="quantity-btn w-10 h-10 flex items-center justify-center text-[#05192d] hover:bg-gray-100 transition-colors font-family-HelveticaNeue"
+												data-action="increase"
+											>
+												<svg
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<path
+														d="M12 5V19M5 12H19"
+														stroke="currentColor"
+														stroke-width="2"
+														stroke-linecap="round"
+													></path>
+												</svg>
+											</button>
+										</div>
+
+										<!-- Botón eliminar -->
+										<button
+											class="remove-btn w-10 h-10 flex items-center justify-center text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+											aria-label="Eliminar producto"
+										>
+											<svg
+												width="20"
+												height="20"
+												viewBox="0 0 24 24"
+												fill="none"
+												xmlns="http://www.w3.org/2000/svg"
+											>
+												<path
+													d="M18 6L6 18M6 6L18 18"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+												></path>
+											</svg>
+										</button>
+									</div>
+								</div>
+							</div>
+
+							<!-- Producto 2 -->
+							<div class="cart-item bg-white border border-gray-200 rounded-lg p-4 md:p-6 flex flex-col md:flex-row gap-4">
+								<div class="shrink-0">
+									<div class="w-24 h-24 md:w-32 md:h-32 bg-gray-100 rounded-lg overflow-hidden">
+										<Image
+											src={Grupo4036}
+											alt="Notus"
+											class="w-full h-full object-cover"
+										/>
+									</div>
+								</div>
+								<div class="flex-1 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+									<div class="flex-1">
+										<p class="text-sm text-gray-600 mb-1 font-family-HelveticaNeue">
+											Ventiladores Industriales
+										</p>
+										<h3 class="text-lg font-semibold text-[#05192d] mb-2 font-family-HelveticaNeue">
+											Notus
+										</h3>
+										<p class="text-xl font-bold text-[#05192d] font-family-HelveticaNeue">
+											$52,000 MXN
+										</p>
+									</div>
+									<div class="flex items-center gap-4">
+										<div class="flex items-center gap-2 border border-gray-300 rounded-lg">
+											<button
+												class="quantity-btn w-10 h-10 flex items-center justify-center text-[#05192d] hover:bg-gray-100 transition-colors font-family-HelveticaNeue"
+												data-action="decrease"
+											>
+												<svg
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<path
+														d="M5 12H19"
+														stroke="currentColor"
+														stroke-width="2"
+														stroke-linecap="round"
+													></path>
+												</svg>
+											</button>
+											<span
+												class="quantity-value w-12 text-center font-medium text-[#05192d] font-family-HelveticaNeue"
+											>
+												2
+											</span>
+											<button
+												class="quantity-btn w-10 h-10 flex items-center justify-center text-[#05192d] hover:bg-gray-100 transition-colors font-family-HelveticaNeue"
+												data-action="increase"
+											>
+												<svg
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<path
+														d="M12 5V19M5 12H19"
+														stroke="currentColor"
+														stroke-width="2"
+														stroke-linecap="round"
+													></path>
+												</svg>
+											</button>
+										</div>
+										<button
+											class="remove-btn w-10 h-10 flex items-center justify-center text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+											aria-label="Eliminar producto"
+										>
+											<svg
+												width="20"
+												height="20"
+												viewBox="0 0 24 24"
+												fill="none"
+												xmlns="http://www.w3.org/2000/svg"
+											>
+												<path
+													d="M18 6L6 18M6 6L18 18"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+												></path>
+											</svg>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Resumen del pedido - 1 columna en desktop -->
+					<div class="md:col-span-1">
+						<div class="bg-gray-50 rounded-lg p-6 sticky top-24">
+							<h2 class="text-2xl font-bold text-[#05192d] mb-6 font-family-HelveticaNeue">
+								Resumen del pedido
+							</h2>
+
+							<!-- Desglose de precios -->
+							<div class="space-y-4 mb-6">
+								<div class="flex justify-between text-gray-700 font-family-HelveticaNeue">
+									<span>Subtotal</span>
+									<span class="font-medium">$149,000 MXN</span>
+								</div>
+								<div class="flex justify-between text-gray-700 font-family-HelveticaNeue">
+									<span>Envío</span>
+									<span class="font-medium">$2,500 MXN</span>
+								</div>
+								<div class="flex justify-between text-gray-700 font-family-HelveticaNeue">
+									<span>IVA (16%)</span>
+									<span class="font-medium">$24,240 MXN</span>
+								</div>
+								<div class="border-t border-gray-300 pt-4 flex justify-between text-xl font-bold text-[#05192d] font-family-HelveticaNeue">
+									<span>Total</span>
+									<span>$175,740 MXN</span>
+								</div>
+							</div>
+
+							<!-- Botones de acción -->
+							<div class="space-y-3">
+								<button
+									class="w-full bg-[#05192d] text-white px-6 py-4 rounded-full text-base font-medium hover:bg-[#0a2540] transition-colors font-family-HelveticaNeue"
+								>
+									Proceder al pago
+								</button>
+								<a
+									href="/store"
+									class="block w-full text-center text-[#05192d] font-medium underline hover:text-[#0a2540] transition-colors font-family-HelveticaNeue"
+								>
+									Continuar comprando
+								</a>
+							</div>
+
+							<!-- Información adicional -->
+							<div class="mt-6 pt-6 border-t border-gray-300">
+								<p class="text-sm text-gray-600 font-family-HelveticaNeue">
+									<i class="text-xs">✓</i> Envío gratuito en compras mayores a $50,000 MXN
+								</p>
+								<p class="text-sm text-gray-600 mt-2 font-family-HelveticaNeue">
+									<i class="text-xs">✓</i> Garantía incluida en todos los productos
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

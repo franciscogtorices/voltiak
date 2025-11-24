@@ -1,0 +1,958 @@
+---
+import { Image } from "astro:assets";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { getCollection } from "astro:content";
+import { productsData } from "../data/products";
+// import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import Grupo4030 from "../assets/Grupo 4036.png";
+import Grupo3500 from "../assets/Grupo 4035.png";
+import BlogPlaceholder1 from "../assets/blog-placeholder-1.jpg";
+import BlogPlaceholder2 from "../assets/blog-placeholder-2.jpg";
+import BlogPlaceholder3 from "../assets/blog-placeholder-3.jpg";
+import BlogPlaceholder4 from "../assets/blog-placeholder-4.jpg";
+import BlogPlaceholder5 from "../assets/blog-placeholder-5.jpg";
+import ProductoDestacado1 from "../assets/productosDestacados/black-3-2@3x.png";
+import ProductoDestacado2 from "../assets/productosDestacados/roller-clim-560-x-560@3x.png";
+
+// Obtener productos populares (los primeros 6 disponibles)
+const popularProducts = [
+	productsData["airfree"],
+	productsData["notus"],
+	productsData["eurus-iii"],
+	// Para los productos que no existen en productsData, usamos datos placeholder
+	{
+		slug: "classic-home",
+		name: "Classic Home",
+		category: "Ventiladores Evaporativos",
+		image: BlogPlaceholder3,
+	},
+	{
+		slug: "aircool",
+		name: "AirCool",
+		category: "Ventiladores Industriales",
+		image: Grupo4030,
+	},
+	{
+		slug: "classic-r-xl",
+		name: "Classic R XL",
+		category: "Ventiladores Evaporativos",
+		image: BlogPlaceholder5,
+	},
+].slice(0, 6);
+
+// Obtener posts del blog (primeros 4)
+const blogPosts = (await getCollection("blog"))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 4);
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title="Voltiak" description="Voltiak" />
+	</head>
+	<body class="">
+		<Header />
+		<main class="min-h-screen bg-[#f4f4f4]">
+			<section
+				class="relative flex items-center justify-center min-h-auto px-4 pt-38 md:pt-60"
+			>
+				<!-- Círculo decorativo -->
+				<div class="Elipse37"></div>
+				<div class="Trazado517"></div>
+				<div class="relative text-center max-w-4xl z-10">
+					<!-- Título -->
+					<h1
+						class="text-5xl sm:text-[90px] font-bold text-[#05192d] leading-tight font-family-HelveticaNeue"
+					>
+						Energía que mueve <br /> espacios.
+					</h1>
+					<!-- Subtítulo -->
+					<!-- w-[342.8px] h-[107.7px] font-helvetica-neue text-lg font-medium leading-[1.22px] tracking-[-0.36] text-center text-[#011122] -->
+					<p
+						class="font-helvetica-neue text-[18px] font-medium text-semibold text-center text-[#011122]"
+					>
+						Ventiladores industriales y climas móviles de alto
+						rendimiento para naves, plantas, constructoras y grandes
+						áreas comerciales.
+					</p>
+					<!-- Botón principal -->
+					<div class="mt-10">
+						<a
+							href="/store"
+							class="inline-flex items-center gap-3 bg-[#000000] text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-[#0a2540] transition"
+						>
+							Explorar tienda
+							<span
+								class="bg-white text-[#05192d] rounded-full p-2 flex items-center justify-center"
+							>
+								→
+							</span>
+						</a>
+					</div>
+					<!-- Link secundario -->
+					<a
+						href="#"
+						class="mt-4 block text-[#05192d] font-medium underline"
+					>
+						Hablar con especialista
+					</a>
+				</div>
+			</section>
+
+			<!-- Feature Highlight Section -->
+			<section class="py-16 md:py-24 px-4">
+				<div class="max-w-5xl mx-auto">
+					<!-- Versión móvil: carrusel -->
+					<div class="md:hidden">
+						<div class="relative overflow-hidden">
+							<div
+								id="carousel-container"
+								class="flex transition-transform duration-300 ease-in-out"
+							>
+								<!-- Card 1: Alto rendimiento -->
+								<div
+									class="min-w-full flex justify-center px-2"
+								>
+									<div
+										class="bg-white rounded-2xl shadow-lg p-8 max-w-md text-center w-full"
+									>
+										<div
+											class="w-16 h-16 bg-[#05192d] rounded-full flex items-center justify-center mx-auto mb-4"
+										>
+											<svg
+												width="32"
+												height="32"
+												viewBox="0 0 24 24"
+												fill="none"
+												xmlns="http://www.w3.org/2000/svg"
+											>
+												<!-- <path d="M12 2C8 2 5 5 5 9C5 13 8 16 12 16C16 16 19 13 19 9C19 5 16 2 12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> -->
+												<path
+													d="M13 2L3 14H12L11 22L21 10H12L13 2Z"
+													stroke="white"
+													stroke-width="1.5"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												></path>
+											</svg>
+										</div>
+										<p
+											class="text-lg text-[#05192d] font-medium"
+										>
+											Alto rendimiento con bajo consumo
+											energético.
+										</p>
+									</div>
+								</div>
+
+								<!-- Card 2: Entrega inmediata -->
+								<div
+									class="min-w-full flex justify-center px-2"
+								>
+									<div
+										class="bg-white rounded-2xl shadow-lg p-8 max-w-md text-center w-full"
+									>
+										<div
+											class="w-16 h-16 bg-[#05192d] rounded-full flex items-center justify-center mx-auto mb-4"
+										>
+											<svg
+												width="32"
+												height="32"
+												viewBox="0 0 24 24"
+												fill="none"
+												xmlns="http://www.w3.org/2000/svg"
+											>
+												<circle
+													cx="12"
+													cy="12"
+													r="10"
+													stroke="white"
+													stroke-width="2"></circle>
+												<polyline
+													points="12 6 12 12 16 14"
+													stroke="white"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												></polyline>
+												<path
+													d="M12 2C6.48 2 2 6.48 2 12"
+													stroke="white"
+													stroke-width="1.5"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												></path>
+												<path
+													d="M12 2C17.52 2 22 6.48 22 12"
+													stroke="white"
+													stroke-width="1.5"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												></path>
+											</svg>
+										</div>
+										<p
+											class="text-lg text-[#05192d] font-medium"
+										>
+											Entrega inmediata + soporte técnico
+											disponible.
+										</p>
+									</div>
+								</div>
+
+								<!-- Card 3: Fichas técnicas -->
+								<div
+									class="min-w-full flex justify-center px-2"
+								>
+									<div
+										class="bg-white rounded-2xl shadow-lg p-8 max-w-md text-center w-full"
+									>
+										<div
+											class="w-16 h-16 bg-[#05192d] rounded-full flex items-center justify-center mx-auto mb-4"
+										>
+											<svg
+												width="32"
+												height="32"
+												viewBox="0 0 24 24"
+												fill="none"
+												xmlns="http://www.w3.org/2000/svg"
+											>
+												<path
+													d="M20.59 13.41L13.42 20.58C13.2343 20.766 13.0007 20.9065 12.7442 20.9883C12.4876 21.0701 12.2154 21.0909 11.9497 21.049C11.6841 21.0071 11.4323 20.9036 11.2143 20.7466C10.9963 20.5896 10.8181 20.3834 10.6938 20.1445C10.5695 19.9056 10.5025 19.6406 10.4983 19.3713C10.4941 19.102 10.5528 18.8356 10.67 18.5933L11.27 17.5L6.5 12.73L5.41 13.33C5.16867 13.4472 4.90225 13.5059 4.63296 13.5017C4.36367 13.4975 4.09865 13.4305 3.85975 13.3062C3.62085 13.1819 3.41464 13.0037 3.25764 12.7857C3.10064 12.5677 2.99714 12.3159 2.95525 12.0503C2.91336 11.7846 2.93415 11.5124 3.01595 11.2558C3.09775 10.9993 3.23825 10.7657 3.42425 10.58L10.59 3.41C10.7763 3.22375 11.0099 3.08324 11.2664 3.00146C11.523 2.91968 11.7952 2.8989 12.0608 2.94079C12.3265 2.98268 12.5783 3.08618 12.7963 3.24318C13.0143 3.40018 13.1925 3.60639 13.3168 3.84529C13.4411 4.08419 13.5081 4.34921 13.5123 4.6185C13.5165 4.88779 13.4578 5.15421 13.3406 5.39554L12.74 6.49L17.51 11.26L18.61 10.66C18.8513 10.5428 19.1177 10.4841 19.387 10.4883C19.6563 10.4925 19.9213 10.5595 20.1602 10.6838C20.3991 10.8081 20.6053 10.9863 20.7623 11.2043C20.9193 11.4223 21.0228 11.6741 21.0647 11.9397C21.1066 12.2054 21.0858 12.4776 21.004 12.7342C20.9222 12.9907 20.7817 13.2243 20.595 13.41H20.59Z"
+													stroke="white"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												></path>
+											</svg>
+										</div>
+										<p
+											class="text-lg text-[#05192d] font-medium"
+										>
+											Fichas técnicas, instalación y
+											garantía incluida.
+										</p>
+									</div>
+								</div>
+							</div>
+
+							<!-- Indicadores de paginación -->
+							<div class="flex justify-center gap-2 mt-6">
+								<button
+									class="carousel-dot w-2 h-2 rounded-full bg-[#05192d] transition-all duration-300"
+									data-slide="0"
+									aria-label="Slide 1"></button>
+								<button
+									class="carousel-dot w-2 h-2 rounded-full bg-gray-300 transition-all duration-300"
+									data-slide="1"
+									aria-label="Slide 2"></button>
+								<button
+									class="carousel-dot w-2 h-2 rounded-full bg-gray-300 transition-all duration-300"
+									data-slide="2"
+									aria-label="Slide 3"></button>
+							</div>
+						</div>
+					</div>
+
+					<!-- Versión escritorio: 3 cards horizontales -->
+					<div class="hidden md:block">
+						<div class="bg-white rounded-2xl shadow-lg p-8">
+							<div class="grid md:grid-cols-3 gap-8">
+								<!-- Card 1: Alto rendimiento - Hoja con rayo -->
+								<div
+									class="text-center border-r border-gray-200 pr-8 last:border-r-0 last:pr-0"
+								>
+									<div
+										class="w-16 h-16 mx-auto mb-4 flex items-center justify-center"
+									>
+										<svg
+											width="48"
+											height="48"
+											viewBox="0 0 24 24"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+											class="text-[#05192d]"
+										>
+											<path
+												d="M13 2L3 14H12L11 22L21 10H12L13 2Z"
+												stroke="currentColor"
+												stroke-width="1.5"
+												stroke-linecap="round"
+												stroke-linejoin="round"></path>
+										</svg>
+									</div>
+									<p
+										class="text-lg text-[#05192d] font-medium"
+									>
+										Alto rendimiento con bajo consumo
+										energético.
+									</p>
+								</div>
+
+								<!-- Card 2: Entrega inmediata - Reloj con flecha circular -->
+								<div
+									class="text-center border-r border-gray-200 pr-8 last:border-r-0 last:pr-0"
+								>
+									<div
+										class="w-16 h-16 mx-auto mb-4 flex items-center justify-center"
+									>
+										<svg
+											width="48"
+											height="48"
+											viewBox="0 0 24 24"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+											class="text-[#05192d]"
+										>
+											<circle
+												cx="12"
+												cy="12"
+												r="10"
+												stroke="currentColor"
+												stroke-width="2"></circle>
+											<polyline
+												points="12 6 12 12 16 14"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											></polyline>
+											<path
+												d="M12 2C6.48 2 2 6.48 2 12"
+												stroke="currentColor"
+												stroke-width="1.5"
+												stroke-linecap="round"
+												stroke-linejoin="round"></path>
+											<path
+												d="M12 2C17.52 2 22 6.48 22 12"
+												stroke="currentColor"
+												stroke-width="1.5"
+												stroke-linecap="round"
+												stroke-linejoin="round"></path>
+										</svg>
+									</div>
+									<p
+										class="text-lg text-[#05192d] font-medium"
+									>
+										Entrega inmediata + soporte técnico
+										disponible.
+									</p>
+								</div>
+
+								<!-- Card 3: Fichas técnicas - Etiqueta de precio -->
+								<div class="text-center">
+									<div
+										class="w-16 h-16 mx-auto mb-4 flex items-center justify-center"
+									>
+										<svg
+											width="48"
+											height="48"
+											viewBox="0 0 24 24"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+											class="text-[#05192d]"
+										>
+											<path
+												d="M20.59 13.41L13.42 20.58C13.2343 20.766 13.0007 20.9065 12.7442 20.9883C12.4876 21.0701 12.2154 21.0909 11.9497 21.049C11.6841 21.0071 11.4323 20.9036 11.2143 20.7466C10.9963 20.5896 10.8181 20.3834 10.6938 20.1445C10.5695 19.9056 10.5025 19.6406 10.4983 19.3713C10.4941 19.102 10.5528 18.8356 10.67 18.5933L11.27 17.5L6.5 12.73L5.41 13.33C5.16867 13.4472 4.90225 13.5059 4.63296 13.5017C4.36367 13.4975 4.09865 13.4305 3.85975 13.3062C3.62085 13.1819 3.41464 13.0037 3.25764 12.7857C3.10064 12.5677 2.99714 12.3159 2.95525 12.0503C2.91336 11.7846 2.93415 11.5124 3.01595 11.2558C3.09775 10.9993 3.23825 10.7657 3.42425 10.58L10.59 3.41C10.7763 3.22375 11.0099 3.08324 11.2664 3.00146C11.523 2.91968 11.7952 2.8989 12.0608 2.94079C12.3265 2.98268 12.5783 3.08618 12.7963 3.24318C13.0143 3.40018 13.1925 3.60639 13.3168 3.84529C13.4411 4.08419 13.5081 4.34921 13.5123 4.6185C13.5165 4.88779 13.4578 5.15421 13.3406 5.39554L12.74 6.49L17.51 11.26L18.61 10.66C18.8513 10.5428 19.1177 10.4841 19.387 10.4883C19.6563 10.4925 19.9213 10.5595 20.1602 10.6838C20.3991 10.8081 20.6053 10.9863 20.7623 11.2043C20.9193 11.4223 21.0228 11.6741 21.0647 11.9397C21.1066 12.2054 21.0858 12.4776 21.004 12.7342C20.9222 12.9907 20.7817 13.2243 20.595 13.41H20.59Z"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"></path>
+										</svg>
+									</div>
+									<p
+										class="text-lg text-[#05192d] font-medium"
+									>
+										Fichas técnicas, instalación y garantía
+										incluida.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<script>
+					// Carrusel para móvil
+					(function () {
+						const container =
+							document.getElementById("carousel-container");
+						const dots = document.querySelectorAll(".carousel-dot");
+						let currentSlide = 0;
+						const totalSlides = 3;
+
+						if (!container || dots.length === 0) return;
+
+						function updateCarousel() {
+							if (!container) return;
+
+							// Mover el contenedor
+							container.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+							// Actualizar dots
+							dots.forEach((dot, index) => {
+								if (index === currentSlide) {
+									dot.classList.remove("bg-gray-300");
+									dot.classList.add("bg-[#05192d]");
+								} else {
+									dot.classList.remove("bg-[#05192d]");
+									dot.classList.add("bg-gray-300");
+								}
+							});
+						}
+
+						// Event listeners para los dots
+						dots.forEach((dot, index) => {
+							dot.addEventListener("click", () => {
+								currentSlide = index;
+								updateCarousel();
+							});
+						});
+
+						// Auto-play cada 5 segundos
+						setInterval(() => {
+							if (!container) return;
+							currentSlide = (currentSlide + 1) % totalSlides;
+							updateCarousel();
+						}, 5000);
+
+						// Swipe para móvil
+						let touchStartX = 0;
+						let touchEndX = 0;
+
+						container.addEventListener("touchstart", (e) => {
+							touchStartX = e.changedTouches[0].screenX;
+						});
+
+						container.addEventListener("touchend", (e) => {
+							touchEndX = e.changedTouches[0].screenX;
+							handleSwipe();
+						});
+
+						function handleSwipe() {
+							if (!container) return;
+							const swipeThreshold = 50;
+							const diff = touchStartX - touchEndX;
+
+							if (Math.abs(diff) > swipeThreshold) {
+								if (
+									diff > 0 &&
+									currentSlide < totalSlides - 1
+								) {
+									// Swipe izquierda - siguiente slide
+									currentSlide++;
+								} else if (diff < 0 && currentSlide > 0) {
+									// Swipe derecha - slide anterior
+									currentSlide--;
+								}
+								updateCarousel();
+							}
+						}
+					})();
+				</script>
+			</section>
+
+			<!-- Category Exploration Section -->
+			<section class="py-16 px-4 bg-gray-100">
+				<div class="max-w-6xl mx-auto">
+					<h2
+						class="text-3xl sm:text-4xl font-bold text-[#05192d] text-left mb-12"
+					>
+						Elige la categoría que quieres explorar
+					</h2>
+					<div class="grid md:grid-cols-2 gap-8 text-center ">
+						<!-- Ventiladores industriales -->
+						<a href="/store?category=ventiladores-industriales" class="bg-[#1a1a1a] rounded-2xl overflow-hidden relative hover:scale-105 transition-all duration-300">
+							<!-- Primer div: Background con gradiente radial + círculo azul -->
+							<div
+								class="absolute inset-0"
+								style="background-image: radial-gradient(circle, #363636 0%, #070707 100%);"
+							>
+								<div
+									class="absolute inset-0 flex items-center justify-center"
+								>
+									<div
+										class="rounded-full border-2 border-blue-500 opacity-30"
+										style="width: clamp(300px, 50vw, 500px); height: clamp(300px, 50vw, 500px);"
+									></div>
+								</div>
+							</div>
+							<!-- Segundo div: Contenido (imagen y texto) -->
+							<div class="relative z-10 flex flex-col">
+								<!-- Div con imagen (arriba en primera tarjeta) -->
+								<div
+									class="flex items-center justify-center min-h-[300px]"
+								>
+									<Image
+										src={ProductoDestacado1}
+										alt="Ventilador industrial"
+										class="w-full h-w-full object-contain"
+									/>
+								</div>
+								<!-- Div con texto (abajo en primera tarjeta) -->
+								<div class="p-6 text-white flex flex-col w-6/8 mx-auto">
+									<h3 class="text-3xl md:text-5xl font-bold mb-3">
+										Ventiladores industriales
+									</h3>
+									<p class="text-gray-300 mb-6 text-xl">
+										Circulación masiva de aire con bajo consumo
+										y cero mantenimiento.
+									</p>
+									<div
+										class="text-white font-medium hover:opacity-80 transition-opacity"
+									>
+										Explorar modelos
+									</div>
+								</div>
+							</div>
+						</a>
+						<!-- Climas móviles -->
+						<a href="/store?category=climas-moviles" class="bg-[#1a1a1a] rounded-2xl overflow-hidden relative hover:scale-105 transition-all duration-300">
+							<!-- Primer div: Background con gradiente radial + círculo azul -->
+							<div
+								class="absolute inset-0"
+								style="background-image: radial-gradient(circle, #363636 0%, #070707 100%);"
+							>	
+								<div
+									class="absolute inset-0 flex items-center justify-center"
+								>
+									<div
+										class="rounded-full border-2 border-blue-500 opacity-30"
+										style="width: clamp(300px, 50vw, 500px); height: clamp(300px, 50vw, 500px);"
+									></div>
+								</div>
+							</div>
+							<!-- Segundo div: Contenido (texto e imagen - inverso) -->
+							<div class="relative z-10 flex flex-col">
+								<!-- Div con texto (arriba en segunda tarjeta) -->
+								<div class="p-6 text-white flex flex-col">
+									<h3 class="text-3xl md:text-5xl font-bold mb-3">
+										Climas móviles
+									</h3>
+									<p class="text-gray-300 mb-6 text-xl">
+										Enfriamiento inmediato y eficiente para
+										espacios amplios sin obras ni instalación.
+									</p>
+									<div
+										class="text-white font-medium hover:opacity-80 transition-opacity"
+									>
+										Explorar modelos
+									</div>
+								</div>
+								<!-- Div con imagen (abajo en segunda tarjeta) -->
+								<div
+									class="flex items-center justify-center min-h-[300px]"
+								>
+									<Image
+										src={ProductoDestacado2}
+										alt="Clima móvil"
+										class="w-full h-full object-contain"
+									/>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Popular Products Section -->
+			<section class="py-16 px-4">
+				<div class="max-w-6xl mx-auto">
+					<!-- Título y botón en la misma línea -->
+					<div class="flex justify-between items-center mb-8">
+						<h2
+							class="text-3xl sm:text-4xl font-bold text-[#05192d]"
+						>
+							Nuestros productos populares
+						</h2>
+						<a
+							href="/store"
+							class="hidden md:inline-flex items-center gap-3 bg-[#05192d] text-white px-6 py-3 rounded-full text-base font-medium hover:bg-[#0a2540] transition"
+						>
+							Ver tienda
+							<span
+								class="bg-white text-[#05192d] rounded-full p-1.5 flex items-center justify-center"
+							>
+								→
+							</span>
+						</a>
+					</div>
+					<!-- Filtros -->
+					<div class="flex justify-center gap-6 mb-12 flex-wrap">
+						<button
+							data-filter="todo"
+							class="filter-btn text-lg font-medium text-[#05192d] border-b-2 border-[#05192d] pb-2 transition-colors"
+						>
+							Todo
+						</button>
+						<button
+							data-filter="Ventiladores Industriales"
+							class="filter-btn text-lg font-medium text-gray-500 hover:text-[#05192d] pb-2 border-b-2 border-transparent transition-colors"
+						>
+							Ventiladores Industriales
+						</button>
+						<button
+							data-filter="Ventiladores Evaporativos"
+							class="filter-btn text-lg font-medium text-gray-500 hover:text-[#05192d] pb-2 border-b-2 border-transparent transition-colors"
+						>
+							Ventiladores Evaporativos
+						</button>
+					</div>
+					<!-- Grid de productos - 3 filas x 2 columnas -->
+					<div id="products-grid" class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 mb-8">
+						{popularProducts.map((product) => (
+							<a
+								href={`/store/${product.slug}`}
+								class="product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+								data-category={product.category}
+							>
+								<div class="relative aspect-square bg-gray-100">
+									<Image
+										src={product.image}
+										alt={product.name}
+										class="w-full h-full object-cover"
+									/>
+									<button
+										class="absolute top-4 right-4 w-10 h-10 bg-[#05192d] rounded-full flex items-center justify-center hover:bg-[#0a2540] transition-colors"
+										onclick="event.preventDefault(); event.stopPropagation();"
+									>
+										<svg
+											width="20"
+											height="20"
+											viewBox="0 0 24 24"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												d="M3.74181 20.5545C4.94143 22 7.17414 22 11.6395 22H12.3607C16.8261 22 19.0589 22 20.2585 20.5545M3.74181 20.5545C2.54219 19.1091 2.95365 16.9146 3.77657 12.5257C4.36179 9.40452 4.65441 7.84393 5.7653 6.92196M3.74181 20.5545C3.74181 20.5545 3.74181 20.5545 3.74181 20.5545ZM20.2585 20.5545C21.4581 19.1091 21.0466 16.9146 20.2237 12.5257C19.6385 9.40452 19.3459 7.84393 18.235 6.92196M20.2585 20.5545C20.2585 20.5545 20.2585 20.5545 20.2585 20.5545ZM18.235 6.92196C17.1241 6 15.5363 6 12.3607 6H11.6395C8.46398 6 6.8762 6 5.7653 6.92196M18.235 6.92196C18.235 6.92196 18.235 6.92196 18.235 6.92196ZM5.7653 6.92196C5.7653 6.92196 5.7653 6.92196 5.7653 6.92196Z"
+												stroke="white"
+												stroke-width="2.5"
+												fill="none"
+											></path>
+										</svg>
+									</button>
+								</div>
+								<div class="p-4">
+									<p class="text-sm text-gray-600 mb-1">
+										{product.category}
+									</p>
+									<h3 class="font-semibold text-[#05192d] mb-2">
+										{product.name}
+									</h3>
+									<span
+										class="text-[#05192d] font-medium text-sm underline"
+									>
+										Explorar Producto
+									</span>
+								</div>
+							</a>
+						))}
+					</div>
+					<!-- Botón móvil -->
+					<div class="text-center md:hidden mt-8">
+						<a
+							href="/store"
+							class="inline-flex items-center gap-3 bg-[#05192d] text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-[#0a2540] transition"
+						>
+							Ver tienda
+							<span
+								class="bg-white text-[#05192d] rounded-full p-2 flex items-center justify-center"
+							>
+								→
+							</span>
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<script>
+				// Funcionalidad de filtros de productos
+				(function () {
+					const filterButtons = document.querySelectorAll('.filter-btn');
+					const productCards = document.querySelectorAll('.product-card');
+					let currentFilter = 'todo';
+
+					function updateFilter(selectedFilter: string) {
+						currentFilter = selectedFilter;
+
+						// Actualizar estilos de botones
+						filterButtons.forEach((btn) => {
+							const filter = btn.getAttribute('data-filter');
+							if (filter === selectedFilter) {
+								btn.classList.remove('text-gray-500', 'border-transparent');
+								btn.classList.add('text-[#05192d]', 'border-[#05192d]');
+							} else {
+								btn.classList.remove('text-[#05192d]', 'border-[#05192d]');
+								btn.classList.add('text-gray-500', 'border-transparent');
+							}
+						});
+
+						// Mostrar/ocultar productos
+						productCards.forEach((card) => {
+							const category = card.getAttribute('data-category');
+							const htmlCard = card as HTMLElement;
+							
+							if (selectedFilter === 'todo' || category === selectedFilter) {
+								htmlCard.style.display = 'block';
+							} else {
+								htmlCard.style.display = 'none';
+							}
+						});
+					}
+
+					// Event listeners para los botones de filtro
+					filterButtons.forEach((btn) => {
+						btn.addEventListener('click', () => {
+							const filter = btn.getAttribute('data-filter');
+							if (filter) {
+								updateFilter(filter);
+							}
+						});
+					});
+
+					// Inicializar con "Todo"
+					updateFilter('todo');
+				})();
+			</script>
+
+			<!-- Client Logos Section -->
+			<section class="py-16 px-4 bg-white">
+				<div class="max-w-6xl mx-auto">
+					<div
+						class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center opacity-60"
+					>
+						<div
+							class="text-xl md:text-2xl font-bold text-gray-700"
+						>
+							Ford
+						</div>
+						<div
+							class="text-xl md:text-2xl font-bold text-gray-700"
+						>
+							Whirlpool
+						</div>
+						<div
+							class="text-xl md:text-2xl font-bold text-gray-700"
+						>
+							AUTOTEK
+						</div>
+						<div
+							class="text-xl md:text-2xl font-bold text-gray-700"
+						>
+							GRECH MOTORS
+						</div>
+						<div
+							class="text-xl md:text-2xl font-bold text-gray-700"
+						>
+							WELBILT
+						</div>
+						<div
+							class="text-xl md:text-2xl font-bold text-gray-700"
+						>
+							DEACERO
+						</div>
+						<div class="text-center">
+							<div
+								class="text-xl md:text-2xl font-bold text-gray-700 mb-1"
+							>
+								BOSCH
+							</div>
+							<div class="text-xs text-gray-500">
+								Innovación para tu vida
+							</div>
+						</div>
+						<div
+							class="text-xl md:text-2xl font-bold text-gray-700"
+						>
+							CAFFENIO
+						</div>
+						<div
+							class="text-xl md:text-2xl font-bold text-gray-700"
+						>
+							NISSAN
+						</div>
+						<div
+							class="text-xl md:text-2xl font-bold text-gray-700"
+						>
+							USF US FARATHANE
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Innovation and Efficiency Section -->
+			<section class="py-16 px-4">
+				<div class="max-w-6xl mx-auto">
+					<div class="grid md:grid-cols-2 gap-12 items-center">
+						<div>
+							<h2
+								class="text-3xl sm:text-4xl font-bold text-[#05192d] mb-6"
+							>
+								Innovación tecnológica y eficiencia energética.
+							</h2>
+							<p class="text-lg text-gray-700 mb-6">
+								VOLTIAK es la división de climatización
+								industrial de Aceros Electroforjados, con
+								respaldo técnico, cobertura nacional y soporte
+								especializado para proyectos de gran escala.
+							</p>
+							<a
+								href="/about"
+								class="text-[#05192d] font-medium underline"
+							>
+								Conoce más sobre nosotros
+							</a>
+						</div>
+						<div
+							class="bg-gray-200 rounded-lg aspect-video flex items-center justify-center"
+						>
+							<div class="text-center text-gray-500">
+								<svg
+									width="64"
+									height="64"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									class="mx-auto mb-2"
+								>
+									<path
+										d="M3 7V5C3 3.89543 3.89543 3 5 3H19C20.1046 3 21 3.89543 21 5V7M3 7L12 14L21 7M3 7V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V7"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"></path>
+								</svg>
+								<p>Imagen de camión Voltiak</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Blog/Posts Section -->
+			<section class="py-16 px-4">
+				<div class="max-w-6xl mx-auto">
+					<!-- Título y botón en la misma línea -->
+					<div class="flex justify-between items-center mb-12">
+						<h2
+							class="text-3xl sm:text-4xl font-bold text-[#05192d]"
+						>
+							Nuestros posts
+						</h2>
+						<a
+							href="/blog"
+							class="hidden md:inline-flex items-center gap-3 bg-[#05192d] text-white px-6 py-3 rounded-full text-base font-medium hover:bg-[#0a2540] transition"
+						>
+							Explorar Posts
+							<span
+								class="bg-white text-[#05192d] rounded-full p-1.5 flex items-center justify-center"
+							>
+								→
+							</span>
+						</a>
+					</div>
+					<div class="grid md:grid-cols-2 gap-8 mb-8">
+						{blogPosts.map((post, index) => {
+							const hasBlueBackground = index > 0 && index % 2 === 0;
+							const hasGradient = index === 0;
+							return (
+								<article class="relative rounded-lg overflow-hidden">
+									<a href={`/blog/${post.id}`}>
+										<div class="aspect-video relative">
+											{post.data.heroImage ? (
+												<Image
+													src={post.data.heroImage}
+													alt={post.data.title}
+													class="w-full h-full object-cover"
+												/>
+											) : (
+												<div class="w-full h-full bg-gray-200"></div>
+											)}
+											{hasGradient ? (
+												<div
+													class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+												></div>
+											) : hasBlueBackground ? (
+												<div class="absolute inset-0 bg-blue-600/80"></div>
+											) : (
+												<div class="absolute inset-0 bg-blue-600/80"></div>
+											)}
+											<div
+												class="absolute bottom-0 left-0 right-0 p-6 text-white"
+											>
+												<p class="text-lg font-medium mb-2">
+													{post.data.title}
+												</p>
+												<p class="text-sm text-gray-200 mb-3">
+													{post.data.description}
+												</p>
+												<span
+													class="text-white font-medium underline"
+												>
+													Leer Artículo
+												</span>
+											</div>
+										</div>
+									</a>
+								</article>
+							);
+						})}
+					</div>
+					<!-- Botón móvil -->
+					<div class="text-center md:hidden">
+						<a
+							href="/blog"
+							class="inline-flex items-center gap-3 bg-[#05192d] text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-[#0a2540] transition"
+						>
+							Explorar Posts
+							<span
+								class="bg-white text-[#05192d] rounded-full p-2 flex items-center justify-center"
+							>
+								→
+							</span>
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Final Call to Action Section -->
+			<section class="py-16 px-4 bg-[#f4f4f4]">
+				<div class="max-w-4xl mx-auto text-center">
+					<h2
+						class="text-3xl sm:text-5xl font-bold text-[#05192d] mb-12"
+					>
+						¿Listo para mejorar el clima de tu espacio?
+					</h2>
+					<div class="flex flex-col sm:flex-row gap-4 justify-center">
+						<a
+							href="/store"
+							class="inline-flex items-center gap-3 bg-[#05192d] text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-[#0a2540] transition"
+						>
+							Ir a tienda
+							<span
+								class="bg-white text-[#05192d] rounded-full p-2 flex items-center justify-center"
+							>
+								→
+							</span>
+						</a>
+						<a
+							href="/contact"
+							class="inline-flex items-center gap-3 bg-white text-[#05192d] border-2 border-[#05192d] px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-50 transition"
+						>
+							Solicitar asesoría
+							<span
+								class="bg-[#05192d] text-white rounded-full p-2 flex items-center justify-center"
+							>
+								→
+							</span>
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

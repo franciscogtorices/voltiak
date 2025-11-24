@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+
+.Elipse37 {
+	position: absolute;
+	width: 917px;
+	height: 869px;
+	opacity: 0.42;
+	background-image: radial-gradient(circle at 50% 50%, #4ea0d6, rgba(78, 162, 216, 0) 73%);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+
+
+.Trazado517 {
+	position: absolute;
+	width: 538.3px;
+	height: 538.3px;
+	opacity: 0.58;
+	border-radius: 50%;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='538.3' height='538.3'%3E%3Ccircle cx='269.15' cy='269.15' r='266.65' fill='none' stroke='%234ea2d8' stroke-width='55' stroke-dasharray='4 4'/%3E%3C/svg%3E");
+	background-size: 100% 100%;	
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+
+@media (max-width: 768px) {
+	.Elipse37 {
+		width: 100%;
+		height: 100%;
+	}
+	.Trazado517 {
+		width: 80vw;
+		height: 80vw;
+		/* border-width: 3px; */
+	}
+}

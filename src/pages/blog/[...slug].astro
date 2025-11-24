@@ -1,0 +1,146 @@
+---
+import { Image } from 'astro:assets';
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+
+export async function getStaticPaths() {
+	const posts = (await getCollection('blog')).sort(
+		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+	);
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: { post },
+	}));
+}
+
+type Props = {
+	post: CollectionEntry<'blog'>;
+};
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+if (!post) {
+	return Astro.redirect('/blog');
+}
+
+// Obtener todos los posts ordenados
+const allPosts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+// Obtener artículos anterior y siguiente
+const currentIndex = allPosts.findIndex((p) => p.id === post.id);
+const previousPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+
+// Formatear fecha
+const formatDate = (date: Date) => {
+	return date.toLocaleDateString('es-ES', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	});
+};
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead
+			title={`${post.data.title} - Voltiak`}
+			description={post.data.description}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="min-h-screen bg-white pt-24 md:pt-40 pb-16">
+			<div class="max-w-4xl mx-auto px-4 md:px-8">
+				<!-- Hero Image -->
+				{post.data.heroImage && (
+					<div class="mb-8">
+						<div class="rounded-lg overflow-hidden">
+							<Image
+								src={post.data.heroImage}
+								alt={post.data.title}
+								class="w-full h-auto"
+							/>
+						</div>
+					</div>
+				)}
+
+				<!-- Metadata -->
+				<div class="mb-4">
+					<p class="text-sm md:text-base text-gray-600 font-family-HelveticaNeue">
+						{post.data.categoryName || 'Noticias'} | {formatDate(post.data.pubDate)}
+					</p>
+				</div>
+
+				<!-- Título -->
+				<h1
+					class="text-3xl md:text-5xl font-bold text-[#05192d] mb-6 font-family-HelveticaNeue"
+				>
+					{post.data.title}
+				</h1>
+
+				<!-- Autor -->
+				<p class="text-sm md:text-base text-gray-600 mb-8 font-family-HelveticaNeue">
+					Write by {post.data.author || 'Equipo Voltiak'}
+				</p>
+
+				<!-- Contenido del artículo -->
+				<article class="prose prose-lg max-w-none mb-12">
+					<Content />
+				</article>
+
+				<!-- Navegación Previous/Next -->
+				<div class="grid md:grid-cols-2 gap-8 pt-8 border-t border-gray-200">
+					<!-- Artículo anterior -->
+					{previousPost ? (
+						<a
+							href={`/blog/${previousPost.id}`}
+							class="group block hover:opacity-80 transition-opacity"
+						>
+							<p
+								class="text-sm text-gray-500 mb-2 font-family-HelveticaNeue"
+							>
+								Previous
+							</p>
+							<h3
+								class="text-lg md:text-xl font-semibold text-[#05192d] group-hover:text-[#0a2540] transition-colors font-family-HelveticaNeue"
+							>
+								{previousPost.data.title}
+							</h3>
+						</a>
+					) : (
+						<div></div>
+					)}
+
+					<!-- Artículo siguiente -->
+					{nextPost ? (
+						<a
+							href={`/blog/${nextPost.id}`}
+							class="group block text-right hover:opacity-80 transition-opacity"
+						>
+							<p
+								class="text-sm text-gray-500 mb-2 font-family-HelveticaNeue"
+							>
+								Next
+							</p>
+							<h3
+								class="text-lg md:text-xl font-semibold text-[#05192d] group-hover:text-[#0a2540] transition-colors font-family-HelveticaNeue"
+							>
+								{nextPost.data.title}
+							</h3>
+						</a>
+					) : (
+						<div></div>
+					)}
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
