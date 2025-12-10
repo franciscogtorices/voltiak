@@ -3,18 +3,19 @@ import { SITE_TITLE } from "../consts";
 import HeaderLink from "./HeaderLink.astro";
 import Logo from "./Logo.astro";
 import MobileMenu from "./MobileMenu.tsx";
+import "../styles/header.css";
 ---
 
 <header
 	class=""
 >
-	<section class="w-full md:w-full mx-auto md:h-[150px] md:py-[24.9px] ph-21 shadow-[0_3px_6px_0_rgba(0,0,0,0.08)] bg-white fixed top-0 left-0 z-30">
-		<nav class="flex items-center justify-between px-4 md:px-21">
-			<div class="flex items-center justify-between md:hidden">
+	<section class="header">
+		<nav class="header-nav">
+			<div class="header-mobile-menu-wrapper">
 				<!-- Sandwich menu -->
 				<button
 					id="mobile-menu-toggle"
-					class="w-10 h-10 text-black border-0 outline-none p-0 m-0 cursor-pointer relative"
+					class="header-menu-toggle"
 				>
 					<svg
 						width="24"
@@ -22,7 +23,6 @@ import MobileMenu from "./MobileMenu.tsx";
 						viewBox="0 0 24 24"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
-						class="absolute inset-0"
 					>
 						<!-- Icono hamburguesa -->
 						<path
@@ -45,40 +45,38 @@ import MobileMenu from "./MobileMenu.tsx";
 						></path>
 					</svg>
 				</button>
-				<button class="w-10 h-10 text-black border-0 outline-none p-0 m-0 cursor-pointer color-transparent">
-					<span class="text-[28px] font-bold  font-family-HelveticaNeue text-transparent">V</span>
+				<button class="header-logo-placeholder">
+					<span>V</span>
 				</button>
 			</div>
-			<div class="m-0">
+			<div class="header-logo-container">
 				<Logo />
 			</div>
-			<div class="internal-links hidden md:flex gap-8 ">
+			<div class="header-nav-links">
 				<HeaderLink
 					href="/store"
-					class="text-[17px]  text-center text-[#011122] font-family-HelveticaNeue font-weight-medium mb-19.1 mt-2"
-					>Tienda</HeaderLink
+					class="header-link-base"
+				>Tienda</HeaderLink
 				>
 				<HeaderLink
 					href="/about"
-					class="text-[17px]  text-center text-[#011122] font-family-HelveticaNeue font-weight-medium mb-19.1 mt-2"
-					>Nuestra Compañía</HeaderLink
+					class="header-link-base"
+				>Nuestra Compañía</HeaderLink
 				>
 				<HeaderLink
 					href="/blog"
-					class="text-[17px]  text-center text-[#011122] font-family-HelveticaNeue font-weight-medium mb-19.1 mt-2"
-					>Blog</HeaderLink
+					class="header-link-base"
+				>Blog</HeaderLink
 				>
 				<HeaderLink
 					href="/contact"
-					class="text-[17px]  text-center text-[#011122] font-family-HelveticaNeue font-weight-medium mb-19.1 mt-2"
-					>Contacto</HeaderLink
+					class="header-link-base"
+				>Contacto</HeaderLink
 				>
 			</div>
-			<div class="social-links flex max-w-[60px] md:max-w-[100px] justify-center items-center gap-4 md:gap-12">
+			<div class="header-social-links">
 				<!-- Lupa de buscar -->
-				<button
-					class="w-10 h-10 text-black border-0 outline-none p-0  m-0 cursor-pointer"
-				>
+				<button class="header-icon-button">
 					<svg
 						width="24"
 						height="24"
@@ -98,7 +96,7 @@ import MobileMenu from "./MobileMenu.tsx";
 	
 				<HeaderLink
 					href="/cart"
-					class="w-12 h-12 flex items-center justify-center border-0 outline-none p-0 m-0 cursor-pointer"
+					class="header-cart-link"
 				>
 					<svg
 						width="48"
